@@ -1,12 +1,12 @@
 radio.onReceivedNumber(function (receivedNumber) {
     signal = radio.receivedPacket(RadioPacketProperty.SignalStrength)
     if (!(playing)) {
-        if (signal >= -50) {
+        if (signal >= -44) {
             music.stopMelody(MelodyStopOptions.All)
             music.playMelody("C D C C - D - C5 ", 355)
             playing = true
         } else {
-            music.setTempo(Math.map(signal, -128, -42, 20, 300))
+            music.setTempo(Math.map(signal, -70, -42, 20, 300))
         }
     }
 })
@@ -15,9 +15,6 @@ input.onButtonPressed(Button.A, function () {
 })
 music.onEvent(MusicEvent.MelodyEnded, function () {
     playing = false
-})
-input.onButtonPressed(Button.B, function () {
-    startMusic()
 })
 function startMusic () {
     music.startMelody(music.builtInMelody(Melodies.Prelude), MelodyOptions.Forever)
